@@ -1,39 +1,141 @@
-.App {
+:root {
+  --font: #403D39;
+  --font-shadow: rgba(64, 61, 57, 0.25);
+  --prim: #B3DEC1;
+  --prim-shadow: rgba(179, 222, 193, 0.25);
+  --sec: #CD8987;
+  --sec-shadow: rgba(205, 137, 135, 0.25);
+  --ter: #E5FCF5;
+  --ter-shadow: rgba(229, 252, 245, 0.25);
+  --bg: #FEFFFE;
+  --bg-shadow: rgba(254, 255, 254, 0.25);
+}
+
+/* General */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
+  margin-bottom: 32px;
+
+  color: var(--font);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p {
+  color: var(--font);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+a {
+  color: var(--sec);
 }
 
-.App-header {
-  min-height: 100vh;
+img.logo {
+  width: 3em;
+  border-radius: 100%;
+  box-shadow: 0px 0px 50px var(--font-shadow);
+}
+
+/* Primary */
+
+.btn-primary {
+  padding-left: 50px;
+  padding-right: 50px;
+
+  background: var(--prim);
+  border: 1px solid var(--prim);
+  box-shadow: 0px 0px 50px var(--prim-shadow);
+  border-radius: 20px;
+}
+
+.btn-primary:hover {
+  background: var(--sec);
+  border: 1px solid var(--sec);
+}
+
+.btn-primary:focus {
+  background: var(--sec);
+  border: 1px solid var(--sec);
+}
+
+.btn-primary:active {
+  background: var(--prim) !important;
+  border: 1px solid var(--prim) !important;
+}
+
+.card {
+  gap: 32px;
+}
+
+/* form */
+
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  gap: 16px;
+}
+
+.form-control {
+  width: 30em;
+
+  box-shadow: 0px 0px 50px var(--ter-shadow);
+  border-radius: 30px;
+}
+
+.hr {
+  height: 0px;
+
+  border: 1px solid var(--sec);
+
+  flex-grow: 1;
+}
+
+/* auth */
+
+.auth_bg {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--bg);
+}
+
+.auth_bg_img {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: url(./assets/auth-bg.jpg), var(--bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.heu {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: linear-gradient(112.68deg, var(--sec-shadow) 0%, var(--prim-shadow) 100%);
+}
+
+.auth_container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
+  align-items: center;
 
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
 }
