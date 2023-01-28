@@ -1,22 +1,53 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerByEmail } from "../../app/authSlice";
 
 export default function SignUp() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [state, setState] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    cpw: "",
+  });
+
+  const onChange = (e) => {
+    setState({
+      ...state,
+      [e.target.id]: e.target.value,
+    });
+  };
   const onSubmit = (e) => {
     e.preventDefault();
+
+    dispatch(registerByEmail({ email: state.email, password: state.password }));
+
+    setState({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      cpw: "",
+    });
   };
+
   return (
     <>
-      <h1>إنشاء حساب</h1>
-      <form onSubmit={onSubmit}>
+      <h1 className="mb-3">إنشاء حساب</h1>
+      <form onSubmit={onSubmit} className="form">
         <div className="form-floating">
           <input
             type="text"
             id="first_name"
             className="form-control"
             placeholder="رغد"
+            onChange={onChange}
           />
-          <label for="first_name">الاسم</label>
+          <label htmlFor="first_name">الاسم</label>
         </div>
         <div className="form-floating">
           <input
@@ -24,8 +55,9 @@ export default function SignUp() {
             id="last_name"
             className="form-control"
             placeholder="الجبر"
+            onChange={onChange}
           />
-          <label for="last_name">العائلة</label>
+          <label htmlFor="last_name">العائلة</label>
         </div>
         <div className="form-floating">
           <input
@@ -33,17 +65,19 @@ export default function SignUp() {
             id="email"
             className="form-control"
             placeholder="example@gmail.com"
+            onChange={onChange}
           />
-          <label for="email">البريد الإلكتروني</label>
+          <label htmlFor="email">البريد الإلكتروني</label>
         </div>
         <div className="form-floating">
           <input
             type="password"
-            id="pw"
+            id="password"
             className="form-control"
             placeholder="123456"
+            onChange={onChange}
           />
-          <label for="pw">كلمة السر</label>
+          <label htmlFor="password">كلمة السر</label>
         </div>
         <div className="form-floating">
           <input
@@ -51,8 +85,9 @@ export default function SignUp() {
             id="cpw"
             className="form-control"
             placeholder="123456"
+            onChange={onChange}
           />
-          <label for="cpw">تأكيد كلمة السر</label>
+          <label htmlFor="cpw">تأكيد كلمة السر</label>
         </div>
         <button type="submit" className="btn btn-primary">
           تسجيل
