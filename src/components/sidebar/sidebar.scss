@@ -1,0 +1,89 @@
+.sidebar{
+    flex: 1;
+    border-left: 0.5px solid lightgray;
+    min-height: 100vh;
+    background-color: white;
+    .top{
+        height: 50px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        .logo {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:#CD8987;
+        }
+    }
+
+    hr {
+        height: 0px;
+        border: 0.5px solid lightgray;
+    }
+
+    .center {
+        padding-right: 10px;
+
+        ul {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+
+            .title {
+                font-size: 10px;
+                font-weight: bold;
+                color: #999;
+                margin-top: 15px;
+                margin-bottom: 5px;
+            }
+
+            li {
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: rgba(205,137,135, 0.20);
+                }
+
+                .icon {
+                    font-size: 18px;
+                    color: #CD8987 !important;
+                }
+
+                span{
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: #888;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+
+        .colorOption {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 1px solid #CD8987;
+            cursor: pointer;
+            margin: 5px;
+
+            &:nth-child(1) {
+                background-color: whitesmoke;
+            }
+            &:nth-child(2) {
+                background-color: #403D39;
+            }
+        }
+    }
+}
