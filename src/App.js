@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "./utils/ProtectedRoute";
+// import ProtectedRoute from "./utils/ProtectedRoute";
 // Views
 import Auth from "./views/auth/Auth";
 import Login from "./views/auth/Login";
@@ -20,9 +20,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

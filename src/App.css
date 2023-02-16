@@ -14,7 +14,9 @@
 /* General */
 
 * {
-  font-family: 'El Messiri', sans-serif;
+  font-family: 'Noto Naskh Arabic', serif;
+
+  margin: 0;
 }
 
 h1,
@@ -29,6 +31,7 @@ h5,
 .h5,
 h6,
 .h6 {
+  font-family: 'Aref Ruqaa', serif;
   text-align: center;
 
   color: var(--font);
