@@ -2,7 +2,7 @@
   --font: #403D39;
   --font-shadow: rgba(64, 61, 57, 0.25);
   --prim: #CD8987;
-  --prim-shadow: rgba(205, 137, 135, 0.25);
+  --prim-shadow: rgba(205, 137, 135, 0.5);
   --sec: #B3DEC1;
   --sec-shadow: rgba(179, 222, 193, 0.25);
   --ter: #E5FCF5;
@@ -12,6 +12,10 @@
 }
 
 /* General */
+
+* {
+  font-family: 'El Messiri', sans-serif;
+}
 
 h1,
 .h1,
