@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-// import { auth } from "../../config/firebase.config";
-// import { signInWithEmailAndPassword } from "firebase/auth";
-import { signinn } from "../../app/authSlice";
+import { Link } from "react-router-dom";
 
 export default function Login() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -22,21 +15,6 @@ export default function Login() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(signinn(state));
-    navigate("/dashboard");
-
-    // signInWithEmailAndPassword(auth, state.email, state.password)
-    //   .then((cred) => {
-    //     console.log("signed in", cred.user);
-    //     dispatch(signin(cred.user));
-    //     setState({
-    //       email: "",
-    //       password: "",
-    //     });
-    //     navigate("/dashboard");
-    //   })
-    //   .catch((err) => console.log(err.message));
   };
 
   return (
