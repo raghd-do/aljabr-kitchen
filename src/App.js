@@ -2,26 +2,44 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import ProtectedRoute from "./utils/ProtectedRoute";
-// Views
-import Auth from "./views/auth/Auth";
-import Login from "./views/auth/Login";
-import SignUp from "./views/auth/SignUp";
-import Dashboard from "./views/Dashboard";
 
-import NotFound from "./views/NotFound";
+// Views
+import Home from "./views/home/Home";
+import Login from "./views/auth/Login";
+import List from "./views/list/List";
+import Single from "./views/single/Single";
+import New from "./views/new/New";
+import NotFound from "./views/404/NotFound";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Auth />}>
-            <Route index element={<Login />} />
+          <Route path="/">
+            {/* GAUST */}
+            <Route index path="home" element={<Home />} />
+
+            {/* AUTH */}
             <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
+
+            {/* USER */}
+            <Route path="users">
+              <Route index element={<List />} />
+              <Route path=":userId" element={<Single />} />
+              <Route path="new" element={<New />} />
+            </Route>
+
+            {/* BUDGET */}
+            <Route path="budgets">
+              <Route index element={<List />} />
+              <Route path=":budgetId" element={<Single />} />
+              <Route path="new" element={<New />} />
+            </Route>
+
+            {/* 404 */}
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

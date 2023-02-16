@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signin } from "../../app/authSlice";
+// import { auth } from "../../config/firebase.config";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+import { signinn } from "../../app/authSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -21,7 +23,20 @@ export default function Login() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(signin({ ...state, navigate }));
+    dispatch(signinn(state));
+    navigate("/dashboard");
+
+    // signInWithEmailAndPassword(auth, state.email, state.password)
+    //   .then((cred) => {
+    //     console.log("signed in", cred.user);
+    //     dispatch(signin(cred.user));
+    //     setState({
+    //       email: "",
+    //       password: "",
+    //     });
+    //     navigate("/dashboard");
+    //   })
+    //   .catch((err) => console.log(err.message));
   };
 
   return (

@@ -24,7 +24,13 @@ export default function SignUp() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(registerByEmail({ email: state.email, password: state.password }));
+    dispatch(
+      registerByEmail({
+        email: state.email,
+        password: state.password,
+        navigate,
+      })
+    );
 
     setState({
       first_name: "",
