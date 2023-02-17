@@ -24,8 +24,8 @@ export default function Widget({ type }) {
           <Person2Icon
             className="icon"
             style={{
-              color: "crimson",
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
+              color: "rgba(255, 99, 132, 1)",
+              backgroundColor: "rgba(255, 99, 132, 0.2)",
             }}
           />
         ),
@@ -40,8 +40,8 @@ export default function Widget({ type }) {
           <ShoppingCartIcon
             className="icon"
             style={{
-              color: "goldenrod",
-              backgroundColor: "rgba(218, 165, 32, 0.2)",
+              color: "rgba(255, 159, 64, 1)",
+              backgroundColor: "rgba(255, 159, 64, 0.2)",
             }}
           />
         ),
@@ -56,8 +56,8 @@ export default function Widget({ type }) {
           <PaymentsOutlinedIcon
             className="icon"
             style={{
-              color: "green",
-              backgroundColor: "rgba(0, 128, 0, 0.2)",
+              color: "rgba(75, 192, 192, 1)",
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
             }}
           />
         ),
@@ -72,8 +72,8 @@ export default function Widget({ type }) {
           <AccountBalanceOutlinedIcon
             className="icon"
             style={{
-              color: "purple",
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
+              color: "rgba(153, 102, 255, 1)",
+              backgroundColor: "rgba(153, 102, 255, 0.2)",
             }}
           />
         ),
