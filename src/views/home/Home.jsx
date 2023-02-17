@@ -4,6 +4,7 @@ import "./home.scss";
 // Components
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import Widget from "../../components/widget/Widget";
 
 export default function Home() {
   return (
@@ -11,7 +12,12 @@ export default function Home() {
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
-        Main
+        <main className="widgets">
+          <Widget type="الأعضاء" />
+          <Widget type="المشتريات" />
+          <Widget type="الدخل الشهري" />
+          <Widget type="المتبقي في البنك" />
+        </main>
       </div>
     </div>
   );
