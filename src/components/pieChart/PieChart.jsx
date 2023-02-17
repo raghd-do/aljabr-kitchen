@@ -49,7 +49,15 @@ export default function PieChart() {
         <div className="chart">
           <Doughnut
             data={data}
-            options={{ legend: { display: false } }}
+            options={{
+              plugins: {
+                legend: {
+                  responsive: true,
+                  display: false,
+                  // position: "bottom",
+                },
+              },
+            }}
             redraw
           />
         </div>
