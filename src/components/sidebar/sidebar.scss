@@ -15,7 +15,7 @@
             font-family: 'Aref Ruqaa', serif;
             font-size: 20px;
             font-weight: bold;
-            color:#CD8987;
+            color:rgba(255, 99, 132, 1);
         }
     }
 
@@ -47,12 +47,12 @@
                 cursor: pointer;
 
                 &:hover{
-                    background-color: rgba(205,137,135, 0.20);
+                    background-color: rgba(255, 99, 132, 0.20);
                 }
 
                 .icon {
                     font-size: 18px;
-                    color: #CD8987 !important;
+                    color: rgba(255, 99, 132, 1);
                 }
 
                 span{
@@ -74,7 +74,7 @@
             width: 20px;
             height: 20px;
             border-radius: 5px;
-            border: 1px solid #CD8987;
+            border: 1px solid rgba(255, 99, 132, 1);
             cursor: pointer;
             margin: 5px;
 
