@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/">
             {/* GAUST */}
-            <Route index path="home" element={<Home />} />
+            <Route path="home" element={<Home />} />
 
             {/* AUTH */}
             <Route path="login" element={<Login />} />

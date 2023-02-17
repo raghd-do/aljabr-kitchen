@@ -5,20 +5,26 @@ import "./home.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Widget from "../../components/widget/Widget";
+import PieChart from "../../components/pieChart/PieChart";
+import LineChart from "../../components/lineChart/LineChart";
 
 export default function Home() {
   return (
     <div className="home">
       <Sidebar />
-      <div className="homeContainer">
+      <main className="homeContainer">
         <Navbar />
-        <main className="widgets">
+        <div className="widgets">
           <Widget type="الأعضاء" />
           <Widget type="المشتريات" />
           <Widget type="الدخل الشهري" />
           <Widget type="المتبقي في البنك" />
-        </main>
-      </div>
+        </div>
+        <div className="charts">
+          <PieChart />
+          <LineChart />
+        </div>
+      </main>
     </div>
   );
 }
