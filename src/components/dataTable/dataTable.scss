@@ -3,6 +3,28 @@
 
     padding: 20px;
 
+    .title {
+        width: 100%;
+        margin-bottom: 10px;
+
+        font-size: 24px;
+        color: grey;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        a {
+            color: rgba(75, 192, 192, 1);
+            font-size: 16px;
+            font-weight: 400;
+
+            border: 1px solid rgba(75, 192, 192, 1);
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+    }
+
     .cellWithImg{
         display: flex;
         align-items: center;
