@@ -39,6 +39,15 @@ export default function PieChart() {
     ],
   };
 
+  const options = {
+    responsive: false,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+    },
+  };
+
   return (
     <div className="pie-chart">
       <div className="top">
@@ -47,19 +56,7 @@ export default function PieChart() {
       </div>
       <div className="bottom">
         <div className="chart">
-          <Doughnut
-            data={data}
-            options={{
-              responsive: true,
-              plugins: {
-                legend: {
-                  // display: false,
-                  position: "bottom",
-                },
-              },
-            }}
-            redraw
-          />
+          <Doughnut data={data} options={options} redraw />
         </div>
         {/* <p className="title">مجموع المشتريات لهذا الشهر</p>
         <p className="amount">400 ريال</p> */}

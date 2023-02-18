@@ -15,7 +15,7 @@ const themeSlice = createSlice({
       state.t = "";
     },
     tuggleTheme: (state) => {
-      state.t = state.t == "" ? "dark" : "";
+      state.t = state.t === "" ? "dark" : "";
     },
   },
 });

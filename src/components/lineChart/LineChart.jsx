@@ -69,6 +69,7 @@ export default function LineChart({ title }) {
 
   const options = {
     responsive: true,
+    aspectRatio: 4 / 1,
     plugins: {
       legend: {
         display: false,
