@@ -1,12 +1,16 @@
 import React from "react";
 import "./app.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import ProtectedRoute from "./utils/ProtectedRoute";
 
 // Store
+import { userColumns } from "./app/userSlice";
 import { userInputs } from "./app/userSlice";
-import { productInputs } from "./app/productSlice";
+import { billColumns } from "./app/billSlice";
 import { billInputs } from "./app/billSlice";
+import { productInputs } from "./app/productSlice";
+import { productColumns } from "./app/productSlice";
 
 // Views
 import Home from "./views/home/Home";
@@ -17,6 +21,10 @@ import New from "./views/new/New";
 import NotFound from "./views/404/NotFound";
 
 function App() {
+  const users = useSelector((state) => state.user);
+  const bills = useSelector((state) => state.bill);
+  const products = useSelector((state) => state.product);
+
   return (
     <div>
       <BrowserRouter>
@@ -30,7 +38,10 @@ function App() {
 
             {/* USER */}
             <Route path="users">
-              <Route index element={<List />} />
+              <Route
+                index
+                element={<List rows={users} columns={userColumns} />}
+              />
               <Route path=":userId" element={<Single />} />
               <Route
                 path="new"
@@ -42,7 +53,10 @@ function App() {
 
             {/* BILLS */}
             <Route path="bills">
-              <Route index element={<List />} />
+              <Route
+                index
+                element={<List rows={bills} columns={billColumns} />}
+              />
               <Route path=":billId" element={<Single />} />
               <Route
                 path="new"
@@ -54,7 +68,10 @@ function App() {
 
             {/* PRODUCTS */}
             <Route path="products">
-              <Route index element={<List />} />
+              <Route
+                index
+                element={<List rows={products} columns={productColumns} />}
+              />
               <Route path=":productID" element={<Single />} />
               <Route
                 path="new"

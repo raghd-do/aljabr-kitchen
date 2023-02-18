@@ -29,7 +29,7 @@ export const userColumns = [
   {
     field: "user",
     headerName: "العضوة",
-    width: 230,
+    width: 250,
     renderCell: (params) => (
       <div className="cellWithImg">
         <div className="imgContainer">
@@ -40,7 +40,7 @@ export const userColumns = [
       </div>
     ),
   },
-  { field: "payments", headerName: "عدد المشتريات", width: 90 },
+  { field: "payments", headerName: "عدد المشتريات", width: 150 },
 ];
 
 // NEW
