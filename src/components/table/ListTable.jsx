@@ -46,7 +46,7 @@ export default function ListTable() {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="tableCell">
                 {row.id}
               </TableCell>
               <TableCell className="tableCell">

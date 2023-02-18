@@ -12,8 +12,13 @@ import Person2Icon from "@mui/icons-material/Person2";
 import LogoutIcon from "@mui/icons-material/Logout";
 // ROUTE
 import { Link } from "react-router-dom";
+// Store
+import { useDispatch } from "react-redux";
+import { toDark, toLight } from "../../app/themeSlice";
 
 export default function Sidebar() {
+  const dispach = useDispatch();
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -75,8 +80,8 @@ export default function Sidebar() {
         </ul>
       </div>
       <div className="bottom">
-        <div className="colorOption"></div>
-        <div className="colorOption"></div>
+        <div className="colorOption" onClick={() => dispach(toLight())}></div>
+        <div className="colorOption" onClick={() => dispach(toDark())}></div>
       </div>
     </div>
   );

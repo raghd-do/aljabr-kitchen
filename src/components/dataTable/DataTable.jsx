@@ -34,6 +34,7 @@ export default function DataTable({ rows, columns }) {
         pageSize={5}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        className="dataGrid"
       />
     </div>
   );

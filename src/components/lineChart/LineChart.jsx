@@ -81,9 +81,6 @@ export default function LineChart({ title }) {
         },
       },
       y: {
-        grid: {
-          color: "lightgrey",
-        },
         ticks: {
           display: false,
         },

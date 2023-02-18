@@ -1,5 +1,6 @@
 import React from "react";
 import "./app.scss";
+import "./style/dark.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import ProtectedRoute from "./utils/ProtectedRoute";
@@ -24,9 +25,10 @@ function App() {
   const users = useSelector((state) => state.user);
   const bills = useSelector((state) => state.bill);
   const products = useSelector((state) => state.product);
+  const theme = useSelector((state) => state.theme.t);
 
   return (
-    <div>
+    <div className={`app ${theme}`}>
       <BrowserRouter>
         <Routes>
           <Route path="/">
