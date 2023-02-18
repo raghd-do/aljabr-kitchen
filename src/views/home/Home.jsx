@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="home">
       <Sidebar />
-      <main className="homeContainer">
+      <main className="container">
         <Navbar />
         <div className="widgets">
           <Widget type="الأعضاء" />
