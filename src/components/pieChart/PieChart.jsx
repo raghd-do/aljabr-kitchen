@@ -2,8 +2,8 @@ import React from "react";
 import "./pieChart.scss";
 // MUI
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+// import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
+// import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 
 // Chart
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -53,8 +53,8 @@ export default function PieChart() {
               plugins: {
                 legend: {
                   responsive: true,
-                  display: false,
-                  // position: "bottom",
+                  // display: false,
+                  position: "bottom",
                 },
               },
             }}
@@ -63,7 +63,7 @@ export default function PieChart() {
         </div>
         <p className="title">مجموع المشتريات لهذا الشهر</p>
         <p className="amount">400 ريال</p>
-        <p className="desc">
+        {/* <p className="desc">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam
           repellendus molestiae iusto optio
         </p>
@@ -82,7 +82,7 @@ export default function PieChart() {
               <div className="amount">600 ريال</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
