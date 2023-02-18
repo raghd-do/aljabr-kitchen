@@ -61,7 +61,6 @@ export default function Sidebar() {
             <span>تسجيل الخروج</span>
           </li>
         </ul>
-        <hr />
       </div>
       <div className="bottom">
         <div className="colorOption"></div>

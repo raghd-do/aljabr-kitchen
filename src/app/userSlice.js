@@ -23,6 +23,7 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 
+// LIST
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -40,4 +41,23 @@ export const userColumns = [
     ),
   },
   { field: "payments", headerName: "عدد المشتريات", width: 90 },
+];
+
+// NEW
+export const userInputs = [
+  {
+    id: "userName",
+    label: "اسم المتسخدم",
+    type: "text",
+  },
+  {
+    id: "userEmail",
+    label: "البرييد الإلكتروني",
+    type: "email",
+  },
+  {
+    id: "userPassword",
+    label: "كلمة السر",
+    type: "password",
+  },
 ];
