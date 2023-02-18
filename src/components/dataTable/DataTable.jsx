@@ -1,5 +1,7 @@
 import React from "react";
 import "./dataTable.scss";
+// ROUTE
+import { Link } from "react-router-dom";
 // MUI
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -11,7 +13,9 @@ export default function DataTable({ rows, columns }) {
       width: 200,
       renderCell: () => (
         <div className="cellAction">
-          <div className="view">عرض</div>
+          <Link to="/users/123">
+            <div className="view">عرض</div>
+          </Link>
           <div className="delete">حذف</div>
         </div>
       ),
@@ -20,6 +24,10 @@ export default function DataTable({ rows, columns }) {
 
   return (
     <div className="dataTable">
+      <div className="title">
+        إضافة جديد
+        <Link to="/users/new">إضافة جديد</Link>
+      </div>
       <DataGrid
         rows={rows}
         columns={columns.concat(actionColumn)}

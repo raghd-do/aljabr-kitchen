@@ -36,7 +36,7 @@ export default function ListTable() {
         <TableHead>
           <TableRow>
             <TableCell className="tableCell">ID</TableCell>
-            <TableCell className="tableCell">صاحبة الصرف</TableCell>
+            <TableCell className="tableCell">صاحبة الفاتورة</TableCell>
             <TableCell className="tableCell">التاريخ</TableCell>
             <TableCell className="tableCell">المبلغ</TableCell>
             <TableCell className="tableCell">جهة الشراء</TableCell>

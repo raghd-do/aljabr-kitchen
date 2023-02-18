@@ -10,34 +10,46 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import WebStoriesIcon from "@mui/icons-material/WebStories";
 import Person2Icon from "@mui/icons-material/Person2";
 import LogoutIcon from "@mui/icons-material/Logout";
+// ROUTE
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">ميزانية البنات</span>
+        <Link to="/">
+          <span className="logo">ميزانية البنات</span>
+        </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
           <p className="title">الرئيسية</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>لوحة التحكم</span>
-          </li>
+          <Link to="/">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>لوحة التحكم</span>
+            </li>
+          </Link>
           <p className="title">قوائم</p>
-          <li>
-            <GroupIcon className="icon" />
-            <span>الأعضاء</span>
-          </li>
-          <li>
-            <ShoppingCartIcon className="icon" />
-            <span>المشتريات</span>
-          </li>
-          <li>
-            <CategoryIcon className="icon" />
-            <span>المنتجات</span>
-          </li>
+          <Link to="/users">
+            <li>
+              <GroupIcon className="icon" />
+              <span>الأعضاء</span>
+            </li>
+          </Link>
+          <Link to="/bills">
+            <li>
+              <ShoppingCartIcon className="icon" />
+              <span>المشتريات</span>
+            </li>
+          </Link>
+          <Link to="/products">
+            <li>
+              <CategoryIcon className="icon" />
+              <span>المنتجات</span>
+            </li>
+          </Link>
           <p className="title">خدمات</p>
           <li>
             <HealthAndSafetyIcon className="icon" />
