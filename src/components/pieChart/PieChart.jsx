@@ -61,8 +61,8 @@ export default function PieChart() {
             redraw
           />
         </div>
-        <p className="title">مجموع المشتريات لهذا الشهر</p>
-        <p className="amount">400 ريال</p>
+        {/* <p className="title">مجموع المشتريات لهذا الشهر</p>
+        <p className="amount">400 ريال</p> */}
         {/* <p className="desc">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam
           repellendus molestiae iusto optio

@@ -23,7 +23,7 @@ export default function Home() {
         </div>
         <div className="charts">
           <PieChart />
-          <LineChart />
+          <LineChart title={"مصروفات السنة"} />
         </div>
         <div className="listContainer">
           <div className="title">جدول المصروفات</div>

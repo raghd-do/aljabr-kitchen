@@ -27,7 +27,7 @@ ChartJS.register(
   gradient
 );
 
-export default function LineChart() {
+export default function LineChart({ title }) {
   const data = {
     labels: [
       "January",
@@ -93,7 +93,7 @@ export default function LineChart() {
 
   return (
     <div className="line-chart">
-      <div className="title">مصروفات السنة</div>
+      <div className="title">{title}</div>
       <div className="chart">
         <Line data={data} options={options} redraw />
       </div>
