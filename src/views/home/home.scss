@@ -34,5 +34,23 @@ $breakpoint-mobile: 425px;
         .chart {
             padding: 5px 20px;
         }
+
+        .listContainer {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+            
+            display: flex;
+            flex-direction: column;
+
+            .title {
+                font-weight: 500;
+                color: grey;
+                margin-bottom: 15px;
+            }
+        }
     }
 }

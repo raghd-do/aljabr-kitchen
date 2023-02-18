@@ -50,9 +50,9 @@ export default function PieChart() {
           <Doughnut
             data={data}
             options={{
+              responsive: true,
               plugins: {
                 legend: {
-                  responsive: true,
                   // display: false,
                   position: "bottom",
                 },

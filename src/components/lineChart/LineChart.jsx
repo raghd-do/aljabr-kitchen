@@ -47,7 +47,7 @@ export default function LineChart() {
       {
         fill: "start",
         data: [10, 20, 15, 32, 49, 56, 50, 30, 20, 11, 32, 49, 56, 50],
-        borderColor: "rgba(53, 162, 235, 1)",
+        borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
         tension: 0.4,
         // showLine: false,
@@ -57,9 +57,9 @@ export default function LineChart() {
           backgroundColor: {
             axis: "y",
             colors: {
-              0: "rgba(53, 162, 235, 0)",
-              50: "rgba(53, 162, 235, 0.7)",
-              100: "rgba(53, 162, 235, 1)",
+              0: "rgba(255, 99, 132, 0)",
+              50: "rgba(255, 99, 132, 0.7)",
+              100: "rgba(255, 99, 132, 1)",
             },
           },
         },
@@ -68,6 +68,7 @@ export default function LineChart() {
   };
 
   const options = {
+    responsive: true,
     plugins: {
       legend: {
         display: false,
@@ -93,7 +94,9 @@ export default function LineChart() {
   return (
     <div className="line-chart">
       <div className="title">مصروفات السنة</div>
-      <Line data={data} options={options} redraw />
+      <div className="chart">
+        <Line data={data} options={options} redraw />
+      </div>
     </div>
   );
 }
