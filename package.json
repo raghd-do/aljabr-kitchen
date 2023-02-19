@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "chartjs-plugin-gradient": "^0.6.1"
+    "chartjs-plugin-gradient": "^0.6.1",
+    "firebase-tools": "^11.23.1"
   }
 }
