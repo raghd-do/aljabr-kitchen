@@ -2,6 +2,9 @@ import React, { useState } from "react";
 // FIREBASE
 import { auth } from "../../config/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
+// STORE
+import { useDispatch } from "react-redux";
+import { authIn } from "../../app/authSlice";
 // ROUTER
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +19,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // CONTROLLED INPUTS
@@ -41,6 +45,7 @@ export default function Login() {
           password: "",
         });
 
+        dispatch(authIn());
         navigate("/");
       })
       .catch((err) => {
@@ -92,7 +97,6 @@ export default function Login() {
             type="password"
             id="password"
             className={error.password && "error"}
-            placeholder="123456"
             onChange={onChange}
             value={state.password}
           />

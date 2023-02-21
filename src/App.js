@@ -1,11 +1,12 @@
 import React from "react";
 import "./app.scss";
 import "./style/dark.scss";
+// ROUUTE
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
-// import ProtectedRoute from "./utils/ProtectedRoute";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 // Store
+import { useSelector } from "react-redux";
 import { userColumns } from "./app/userSlice";
 import { userInputs } from "./app/userSlice";
 import { billColumns } from "./app/billSlice";
@@ -34,9 +35,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            {/* GAUST */}
-            <Route index element={<Home />} />
-
             {/* AUTH */}
             <Route path="/login">
               <Route element={<Auth />}>
@@ -45,17 +43,40 @@ function App() {
               </Route>
             </Route>
 
+            {/* HOME */}
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+
             {/* USER */}
             <Route path="users">
               <Route
                 index
-                element={<List rows={users} columns={userColumns} />}
+                element={
+                  <ProtectedRoute>
+                    <List rows={users} columns={userColumns} />
+                  </ProtectedRoute>
+                }
               />
-              <Route path=":userId" element={<Single />} />
+              <Route
+                path=":userId"
+                element={
+                  <ProtectedRoute>
+                    <Single />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="new"
                 element={
-                  <New title={"إضافة مستخدم جديد"} inputs={userInputs} />
+                  <ProtectedRoute>
+                    <New title={"إضافة مستخدم جديد"} inputs={userInputs} />
+                  </ProtectedRoute>
                 }
               />
             </Route>
@@ -64,13 +85,26 @@ function App() {
             <Route path="bills">
               <Route
                 index
-                element={<List rows={bills} columns={billColumns} />}
+                element={
+                  <ProtectedRoute>
+                    <List rows={bills} columns={billColumns} />
+                  </ProtectedRoute>
+                }
               />
-              <Route path=":billId" element={<Single />} />
+              <Route
+                path=":billId"
+                element={
+                  <ProtectedRoute>
+                    <Single />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="new"
                 element={
-                  <New title={"إضافة فاتورة جديد"} inputs={billInputs} />
+                  <ProtectedRoute>
+                    <New title={"إضافة فاتورة جديد"} inputs={billInputs} />
+                  </ProtectedRoute>
                 }
               />
             </Route>
@@ -79,13 +113,26 @@ function App() {
             <Route path="products">
               <Route
                 index
-                element={<List rows={products} columns={productColumns} />}
+                element={
+                  <ProtectedRoute>
+                    <List rows={products} columns={productColumns} />
+                  </ProtectedRoute>
+                }
               />
-              <Route path=":productID" element={<Single />} />
+              <Route
+                path=":productID"
+                element={
+                  <ProtectedRoute>
+                    <Single />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="new"
                 element={
-                  <New title={"إضافة منتج جديد"} inputs={productInputs} />
+                  <ProtectedRoute>
+                    <New title={"إضافة منتج جديد"} inputs={productInputs} />
+                  </ProtectedRoute>
                 }
               />
             </Route>
