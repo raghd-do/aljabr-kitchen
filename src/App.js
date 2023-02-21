@@ -15,7 +15,9 @@ import { productColumns } from "./app/productSlice";
 
 // Views
 import Home from "./views/home/Home";
+import Auth from "./views/auth/Auth";
 import Login from "./views/auth/Login";
+import SignUp from "./views/auth/SignUp";
 import List from "./views/list/List";
 import Single from "./views/single/Single";
 import New from "./views/new/New";
@@ -36,7 +38,12 @@ function App() {
             <Route index element={<Home />} />
 
             {/* AUTH */}
-            <Route path="login" element={<Login />} />
+            <Route path="/login">
+              <Route element={<Auth />}>
+                <Route index element={<Login />} />
+                <Route path="new" element={<SignUp />} />
+              </Route>
+            </Route>
 
             {/* USER */}
             <Route path="users">

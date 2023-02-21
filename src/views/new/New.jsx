@@ -67,7 +67,7 @@ export default function New({ title, inputs }) {
                 </div>
               ))}
 
-              <button type="submit" className="submit">
+              <button type="submit" className="add">
                 إضافة
               </button>
             </form>

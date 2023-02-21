@@ -5,4 +5,61 @@
     a {
         text-decoration: none;
     }
+
+    button {
+        padding: 10px;
+        margin-top: 10px;
+
+        border: none;
+        border-radius: 5px;
+    
+        &.primary {
+            width: 100px;
+            padding: 10px;
+            
+            font-weight: bold;
+            color: white;
+            
+            background-color: rgba(255, 99, 132, 1);
+            box-shadow: 2px 4px 10px 1px rgba(255, 99, 132, 0.3);
+            
+            cursor: pointer;
+            
+            &:hover {
+                background-color: rgba(255, 99, 132, 0.5);
+            }
+            
+            &:active {
+                background-color: rgba(255, 99, 132, 1);
+            }
+        }
+        
+        &.secondary {
+            width: 100px;
+            padding: 10px;
+            
+            font-weight: bold;
+            color: white;
+            
+            background-color: rgba(75, 192, 192, 1);
+            box-shadow: 2px 4px 10px 1px rgba(255, 99, 132, 0.3);
+            
+            cursor: pointer;
+            
+            &:hover {
+                background-color: rgba(255, 99, 132, 0.5);
+            }
+            
+            &:active {
+                background-color: rgba(255, 99, 132, 1);
+            }
+            
+        }
+    }
+
+    input {
+        padding: 5px;
+        border: none;
+        border-bottom: 1px solid grey;
+    }
 }
