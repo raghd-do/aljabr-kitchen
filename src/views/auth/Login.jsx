@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+  // HOCKS
   const [state, setState] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState(true);
 
+  // CONTROLLED INPUTS
   const onChange = (e) => {
     setState({
       ...state,
       [e.target.id]: e.target.value,
     });
   };
+
+  // SUBMIT
   const onSubmit = (e) => {
     e.preventDefault();
   };
@@ -26,6 +31,7 @@ export default function Login() {
           <input
             type="email"
             id="email"
+            className={error && "error"}
             placeholder="example@gmail.com"
             onChange={onChange}
           />
@@ -35,10 +41,14 @@ export default function Login() {
           <input
             type="password"
             id="password"
+            className={error && "error"}
             placeholder="123456"
             onChange={onChange}
           />
         </div>
+        {error && (
+          <span className="alert">خطأ في البريد الإلكتروني أو كلمة السر</span>
+        )}
         <button type="submit" className="primary">
           دخول
         </button>

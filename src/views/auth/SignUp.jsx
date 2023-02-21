@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function SignUp() {
+  // HOCKS
   const [state, setState] = useState({
     first_name: "",
     last_name: "",
@@ -9,14 +10,49 @@ export default function SignUp() {
     password: "",
     cpw: "",
   });
+  const [error, setError] = useState({
+    password: "",
+    cpw: "",
+  });
 
+  // CONTROLLED INPUTS
   const onChange = (e) => {
     setState({
       ...state,
       [e.target.id]: e.target.value,
     });
+
+    // VALIDATION
+    if (e.target.id === "password") {
+      if (e.target.value.length < 6) {
+        setError({
+          ...error,
+          password: "يجب أن تكون كلمة السر أكثر من 6 أرقام وأحرف",
+        });
+      } else {
+        setError({
+          ...error,
+          password: "",
+        });
+      }
+    }
+    if (e.target.id === "cpw") {
+      const password = state.password;
+      if (e.target.value !== password) {
+        setError({
+          ...error,
+          cpw: "تأكيد كلمة السر غير متطابق مع كلمة السر",
+        });
+      } else {
+        setError({
+          ...error,
+          cpw: "",
+        });
+      }
+    }
   };
 
+  // SUBMIT
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -68,18 +104,23 @@ export default function SignUp() {
             <input
               type="password"
               id="password"
+              className={error.password && "error"}
               placeholder="123456"
               onChange={onChange}
             />
+            {error.password && <span className="alert">{error.password}</span>}
           </div>
+
           <div className="inputGroup">
             <label htmlFor="cpw">تأكيد كلمة السر</label>
             <input
               type="password"
               id="cpw"
+              className={error.cpw && "error"}
               placeholder="123456"
               onChange={onChange}
             />
+            {error.cpw && <span className="alert">{error.cpw}</span>}
           </div>
         </div>
         <button type="submit" className="primary">

@@ -61,5 +61,9 @@
         padding: 5px;
         border: none;
         border-bottom: 1px solid grey;
+        
+        &.error {
+            border-bottom: 1px solid red !important;
+        }
     }
 }
