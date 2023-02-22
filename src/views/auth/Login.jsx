@@ -45,7 +45,7 @@ export default function Login() {
           password: "",
         });
 
-        dispatch(authIn());
+        dispatch(authIn(cred));
         navigate("/");
       })
       .catch((err) => {
