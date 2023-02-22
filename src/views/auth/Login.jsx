@@ -4,7 +4,7 @@ import { auth } from "../../config/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 // STORE
 import { useDispatch } from "react-redux";
-import { authIn } from "../../app/authSlice";
+import { authIn } from "../../app/auth/authSlice";
 // ROUTER
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
