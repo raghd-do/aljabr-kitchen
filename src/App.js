@@ -7,8 +7,8 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 
 // Store
 import { useSelector } from "react-redux";
-import { userColumns } from "./app/userSlice";
-import { userInputs } from "./app/userSlice";
+import { userColumns } from "./app/user/userSlice";
+import { userInputs } from "./app/user/userSlice";
 import { billColumns } from "./app/billSlice";
 import { billInputs } from "./app/billSlice";
 import { productInputs } from "./app/productSlice";

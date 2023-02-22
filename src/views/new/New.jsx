@@ -5,15 +5,17 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 // MUI
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+// ROUTE
+import { useLocation } from "react-router-dom";
+// CRUD
+import { AddUser } from "../../app/user/userCRUD";
 
 export default function New({ title, inputs }) {
+  // HOCKS
   const [item, setItem] = useState({});
-
-  // const [image, setImage] =
+  const location = useLocation();
 
   const onChange = (e) => {
-    console.log(e.target.id);
-    console.log(e.target.value);
     setItem({
       ...item,
       [e.target.id]:
@@ -23,6 +25,21 @@ export default function New({ title, inputs }) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    switch (location.pathname) {
+      // USER
+      case "/users/new":
+        AddUser(item);
+        break;
+      // BILL
+      case "/bills/new":
+        break;
+      // PRODUCT
+      case "/products/new":
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -63,11 +80,11 @@ export default function New({ title, inputs }) {
               {inputs.map((input) => (
                 <div className="inputGroup" key={input.id}>
                   <label htmlFor={input.id}>{input.label}</label>
-                  <input type={input.type} id={input.id} />
+                  <input type={input.type} id={input.id} onChange={onChange} />
                 </div>
               ))}
 
-              <button type="submit" className="add">
+              <button type="submit" className="primary add">
                 إضافة
               </button>
             </form>

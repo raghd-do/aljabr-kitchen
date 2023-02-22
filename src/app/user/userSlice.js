@@ -2,32 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: [
-    {
-      id: 1,
-      name: "رغد الجبر",
-      img: "https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/30/e8/fd/30e8fdc6-3797-91f5-7d76-de5a2c8ac262/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/256x256bb.jpg",
-      payments: 4,
-      loggedIn: false,
+  initialState: [],
+  reducers: {
+    userAdded: (state, action) => {
+      state.push(action.payload);
     },
-    {
-      id: 2,
-      name: "صفية الجبر",
-      img: "https://techcrunch.com/wp-content/uploads/2022/01/GettyImages-1308797233.jpg",
-      payments: 3,
-      loggedIn: true,
-    },
-  ],
-  reducers: {},
+  },
 });
 
+export const { userAdded } = userSlice.actions;
 export default userSlice.reducer;
 
 // LIST
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
-    field: "user",
+    field: "name",
     headerName: "العضوة",
     width: 250,
     renderCell: (params) => (
@@ -46,17 +36,17 @@ export const userColumns = [
 // NEW
 export const userInputs = [
   {
-    id: "userName",
+    id: "name",
     label: "اسم المتسخدم",
     type: "text",
   },
   {
-    id: "userEmail",
+    id: "email",
     label: "البرييد الإلكتروني",
     type: "email",
   },
   {
-    id: "userPassword",
+    id: "password",
     label: "كلمة السر",
     type: "password",
   },
