@@ -7,6 +7,7 @@ import Navbar from "../../components/navbar/Navbar";
 // MUI
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Alert from "@mui/material/Alert";
+import LinearProgress from "@mui/material/LinearProgress";
 // ROUTE
 import { useLocation } from "react-router-dom";
 // FIREBASE
@@ -22,7 +23,7 @@ export default function New({ title, inputs }) {
   const [file, setFile] = useState();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [upload, setUpload] = useState(true);
+  const [upload, setUpload] = useState(null);
   const location = useLocation();
   const disatch = useDispatch();
 
@@ -32,6 +33,7 @@ export default function New({ title, inputs }) {
       ...item,
       [e.target.id]: e.target.value,
     });
+    setSuccess(false);
   };
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export default function New({ title, inputs }) {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          setUpload(false);
+          setUpload(progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -60,7 +62,7 @@ export default function New({ title, inputs }) {
           }
         },
         (error) => {
-          setUpload(true);
+          setUpload(null);
           setError(error);
         },
         () => {
@@ -69,7 +71,7 @@ export default function New({ title, inputs }) {
               ...prev,
               image: DownloadURL,
             }));
-            setUpload(true);
+            setUpload(null);
           });
         }
       );
@@ -133,6 +135,13 @@ export default function New({ title, inputs }) {
             />
           </div>
           <div className="left">
+            {upload != null && (
+              <LinearProgress
+                variant="determinate"
+                value={upload}
+                color="inherit"
+              />
+            )}
             <span className="alert">{error}</span>
 
             <form onSubmit={submit}>
@@ -163,7 +172,11 @@ export default function New({ title, inputs }) {
                 </div>
               ))}
 
-              <button type="submit" className="primary add" disabled={!upload}>
+              <button
+                type="submit"
+                className="primary add"
+                disabled={upload != null && upload < 100 ? true : false}
+              >
                 إضافة
               </button>
             </form>
