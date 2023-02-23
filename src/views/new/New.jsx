@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./new.scss";
 // Component
@@ -6,18 +6,23 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 // MUI
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import Alert from "@mui/material/Alert";
 // ROUTE
 import { useLocation } from "react-router-dom";
 // FIREBASE
-import { auth } from "../../config/firebase.config";
+import { auth, storage } from "../../config/firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // CRUD
 import { AddUser } from "../../app/user/userCRUD";
 
 export default function New({ title, inputs }) {
   // HOCKS
   const [item, setItem] = useState({});
+  const [file, setFile] = useState();
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [upload, setUpload] = useState(true);
   const location = useLocation();
   const disatch = useDispatch();
 
@@ -25,15 +30,58 @@ export default function New({ title, inputs }) {
   const onChange = (e) => {
     setItem({
       ...item,
-      [e.target.id]:
-        e.target.id === "image" ? e.target.files[0] : e.target.value,
+      [e.target.id]: e.target.value,
     });
   };
+
+  useEffect(() => {
+    const uploadFile = () => {
+      // TO MAKE A UNICE NAME
+      const name = new Date().getTime() + file.name;
+      const storageRef = ref(storage, name);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setUpload(false);
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          setUpload(true);
+          setError(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((DownloadURL) => {
+            setItem((prev) => ({
+              ...prev,
+              image: DownloadURL,
+            }));
+            setUpload(true);
+          });
+        }
+      );
+    };
+    file && uploadFile();
+    setSuccess(false);
+  }, [file]);
 
   // SUBMIT
   const submit = (e) => {
     e.preventDefault();
-    // TODO: validation && password encryption
+    // TODO: validation
 
     switch (location.pathname) {
       // USER
@@ -42,6 +90,9 @@ export default function New({ title, inputs }) {
           .then((cred) => {
             disatch(AddUser({ id: cred.user.uid, user: item }));
             setItem({});
+            setError([]);
+            setFile();
+            setSuccess(true);
           })
           .catch((err) => {
             setError(err.code);
@@ -72,11 +123,12 @@ export default function New({ title, inputs }) {
           <div className="right">
             <img
               src={
-                item.image
-                  ? URL.createObjectURL(item.image)
+                file
+                  ? URL.createObjectURL(file)
                   : require("../../assets/noImage.png")
               }
               alt="avatar"
+              accept="image/*"
               className="img"
             />
           </div>
@@ -93,7 +145,7 @@ export default function New({ title, inputs }) {
                   type="file"
                   id="image"
                   style={{ display: "none" }}
-                  onChange={onChange}
+                  onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
 
@@ -105,16 +157,22 @@ export default function New({ title, inputs }) {
                     id={input.id}
                     className={error && "error"}
                     onChange={onChange}
-                    // value={item[input.id]}
+                    value={item[input.id]}
                     required
                   />
                 </div>
               ))}
 
-              <button type="submit" className="primary add">
+              <button type="submit" className="primary add" disabled={!upload}>
                 إضافة
               </button>
             </form>
+            <div className="alert">
+              {error && <Alert severity="error">{error}</Alert>}
+              {success && (
+                <Alert severity="success">تم إضافة المستخدم بنجاح !</Alert>
+              )}
+            </div>
           </div>
         </div>
       </div>
