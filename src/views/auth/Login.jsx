@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { auth } from "../../config/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 // STORE
+// import { SignIn } from "";
 import { useDispatch } from "react-redux";
 import { authIn } from "../../app/auth/authSlice";
 // ROUTER
@@ -102,9 +103,6 @@ export default function Login() {
           />
           {error.password && <span className="alert">{error.password}</span>}
         </div>
-        {/* {error && (
-          <span className="alert">خطأ في البريد الإلكتروني أو كلمة السر</span>
-        )} */}
         <button type="submit" className="primary">
           دخول
         </button>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./new.scss";
 // Component
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -7,14 +8,20 @@ import Navbar from "../../components/navbar/Navbar";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 // ROUTE
 import { useLocation } from "react-router-dom";
+// FIREBASE
+import { auth } from "../../config/firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 // CRUD
 import { AddUser } from "../../app/user/userCRUD";
 
 export default function New({ title, inputs }) {
   // HOCKS
   const [item, setItem] = useState({});
+  const [error, setError] = useState("");
   const location = useLocation();
+  const disatch = useDispatch();
 
+  // CONTROLLED INPUTS
   const onChange = (e) => {
     setItem({
       ...item,
@@ -23,17 +30,28 @@ export default function New({ title, inputs }) {
     });
   };
 
+  // SUBMIT
   const submit = (e) => {
     e.preventDefault();
+    // TODO: validation && password encryption
 
     switch (location.pathname) {
       // USER
       case "/users/new":
-        AddUser(item);
+        createUserWithEmailAndPassword(auth, item.email, item.password)
+          .then((cred) => {
+            disatch(AddUser({ id: cred.user.uid, user: item }));
+            setItem({});
+          })
+          .catch((err) => {
+            setError(err.code);
+          });
         break;
+
       // BILL
       case "/bills/new":
         break;
+
       // PRODUCT
       case "/products/new":
         break;
@@ -63,6 +81,8 @@ export default function New({ title, inputs }) {
             />
           </div>
           <div className="left">
+            <span className="alert">{error}</span>
+
             <form onSubmit={submit}>
               <div className="inputGroup">
                 <label htmlFor="image" className="image">
@@ -80,7 +100,14 @@ export default function New({ title, inputs }) {
               {inputs.map((input) => (
                 <div className="inputGroup" key={input.id}>
                   <label htmlFor={input.id}>{input.label}</label>
-                  <input type={input.type} id={input.id} onChange={onChange} />
+                  <input
+                    type={input.type}
+                    id={input.id}
+                    className={error && "error"}
+                    onChange={onChange}
+                    // value={item[input.id]}
+                    required
+                  />
                 </div>
               ))}
 
