@@ -105,7 +105,6 @@ export default function SignUp() {
               type="password"
               id="password"
               className={error.password && "error"}
-              placeholder="123456"
               onChange={onChange}
             />
             {error.password && <span className="alert">{error.password}</span>}
@@ -117,7 +116,6 @@ export default function SignUp() {
               type="password"
               id="cpw"
               className={error.cpw && "error"}
-              placeholder="123456"
               onChange={onChange}
             />
             {error.cpw && <span className="alert">{error.cpw}</span>}
