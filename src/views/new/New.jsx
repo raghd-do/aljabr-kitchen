@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import "./new.scss";
 // Component
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -9,23 +8,23 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Alert from "@mui/material/Alert";
 import LinearProgress from "@mui/material/LinearProgress";
 // ROUTE
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // FIREBASE
 import { auth, storage } from "../../config/firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// CRUD
-import { AddUser } from "../../app/user/userCRUD";
+// API
+import { useAddUserMutation } from "../../app/user/UserApi";
 
 export default function New({ title, inputs }) {
   // HOCKS
   const [item, setItem] = useState({});
-  const [file, setFile] = useState();
+  const [file, setFile] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
   const [upload, setUpload] = useState(null);
   const location = useLocation();
-  const disatch = useDispatch();
+  const [addUser] = useAddUserMutation();
+  const navigate = useNavigate();
 
   // CONTROLLED INPUTS
   const onChange = (e) => {
@@ -33,7 +32,6 @@ export default function New({ title, inputs }) {
       ...item,
       [e.target.id]: e.target.value,
     });
-    setSuccess(false);
   };
 
   useEffect(() => {
@@ -77,7 +75,6 @@ export default function New({ title, inputs }) {
       );
     };
     file && uploadFile();
-    setSuccess(false);
   }, [file]);
 
   // SUBMIT
@@ -90,11 +87,8 @@ export default function New({ title, inputs }) {
       case "/users/new":
         createUserWithEmailAndPassword(auth, item.email, item.password)
           .then((cred) => {
-            disatch(AddUser({ id: cred.user.uid, user: item }));
-            setItem({});
-            setError([]);
-            setFile();
-            setSuccess(true);
+            addUser({ id: cred.user.uid, user: item });
+            navigate("/users");
           })
           .catch((err) => {
             setError(err.code);
@@ -142,7 +136,6 @@ export default function New({ title, inputs }) {
                 color="inherit"
               />
             )}
-            <span className="alert">{error}</span>
 
             <form onSubmit={submit}>
               <div className="inputGroup">
@@ -155,6 +148,7 @@ export default function New({ title, inputs }) {
                   id="image"
                   style={{ display: "none" }}
                   onChange={(e) => setFile(e.target.files[0])}
+                  required
                 />
               </div>
 
@@ -166,7 +160,7 @@ export default function New({ title, inputs }) {
                     id={input.id}
                     className={error && "error"}
                     onChange={onChange}
-                    value={item[input.id]}
+                    // value={item[input.id]}
                     required
                   />
                 </div>
@@ -175,16 +169,13 @@ export default function New({ title, inputs }) {
               <button
                 type="submit"
                 className="primary add"
-                disabled={upload != null && upload < 100 ? true : false}
+                disabled={upload !== null && upload < 100}
               >
                 إضافة
               </button>
             </form>
             <div className="alert">
               {error && <Alert severity="error">{error}</Alert>}
-              {success && (
-                <Alert severity="success">تم إضافة المستخدم بنجاح !</Alert>
-              )}
             </div>
           </div>
         </div>

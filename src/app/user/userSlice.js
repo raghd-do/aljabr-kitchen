@@ -1,16 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+// FIRESTORE
+import { db } from "../../config/firebase.config";
+import { getDocs, collection } from "firebase/firestore";
 
 const userSlice = createSlice({
   name: "user",
   initialState: [],
   reducers: {
-    userAdded: (state, action) => {
-      state.push(action.payload);
+    AllUsers: (state, action) => {
+      state.push(action.payload.map((doc) => doc));
     },
   },
 });
 
-export const { userAdded } = userSlice.actions;
+export const { AllUsers } = userSlice.actions;
 export default userSlice.reducer;
 
 // LIST
