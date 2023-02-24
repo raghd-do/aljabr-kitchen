@@ -14,6 +14,9 @@ import { billInputs } from "./app/billSlice";
 import { productInputs } from "./app/productSlice";
 import { productColumns } from "./app/productSlice";
 
+// API
+import { useGetUsersQuery } from "./app/user/UserApi";
+
 // Views
 import Home from "./views/home/Home";
 import Auth from "./views/auth/Auth";
@@ -25,7 +28,7 @@ import New from "./views/new/New";
 import NotFound from "./views/404/NotFound";
 
 function App() {
-  const users = useSelector((state) => state.user);
+  const { data: users, isLoading } = useGetUsersQuery();
   const bills = useSelector((state) => state.bill);
   const products = useSelector((state) => state.product);
   const theme = useSelector((state) => state.theme.t);
@@ -59,7 +62,11 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List rows={users} columns={userColumns} />
+                    <List
+                      rows={users}
+                      columns={userColumns}
+                      isLoading={isLoading}
+                    />
                   </ProtectedRoute>
                 }
               />
@@ -87,7 +94,11 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List rows={bills} columns={billColumns} />
+                    <List
+                      rows={bills}
+                      columns={billColumns}
+                      isLoading={isLoading}
+                    />
                   </ProtectedRoute>
                 }
               />
@@ -115,7 +126,11 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List rows={products} columns={productColumns} />
+                    <List
+                      rows={products}
+                      columns={productColumns}
+                      isLoading={isLoading}
+                    />
                   </ProtectedRoute>
                 }
               />

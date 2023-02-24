@@ -1,24 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-// FIRESTORE
-import { db } from "../../config/firebase.config";
-import { getDocs, collection } from "firebase/firestore";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: [],
+  initialState: {
+    data: [],
+  },
   reducers: {
-    AllUsers: (state, action) => {
-      state.push(action.payload.map((doc) => doc));
+    setUsers: (state, action) => {
+      console.log(action.payload);
+      state.data = action.payload;
     },
   },
 });
 
-export const { AllUsers } = userSlice.actions;
+export const { setUsers } = userSlice.actions;
 export default userSlice.reducer;
 
 // LIST
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  // { field: "id", headerName: "ID", width: 70 },
   {
     field: "name",
     headerName: "العضوة",
@@ -26,14 +26,19 @@ export const userColumns = [
     renderCell: (params) => (
       <div className="cellWithImg">
         <div className="imgContainer">
-          <img src={params.row.img} alt="avatar" className="cellImg" />
-          <div className={`status ${params.row.loggedIn}`}></div>
+          <img src={params.row.image} alt="avatar" className="cellImg" />
+          {/* <div className={`status ${params.row.loggedIn}`}></div> */}
         </div>
         {params.row.name}
       </div>
     ),
   },
-  { field: "payments", headerName: "عدد المشتريات", width: 150 },
+  {
+    field: "bills",
+    headerName: "عدد المشتريات",
+    width: 150,
+    renderCell: (params) => <>{params.row.bills.length}</>,
+  },
 ];
 
 // NEW

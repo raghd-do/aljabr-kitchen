@@ -4,8 +4,9 @@ import "./dataTable.scss";
 import { Link } from "react-router-dom";
 // MUI
 import { DataGrid } from "@mui/x-data-grid";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export default function DataTable({ rows, columns }) {
+export default function DataTable({ rows, columns, isLoading }) {
   const actionColumn = [
     {
       field: "action",
@@ -28,14 +29,18 @@ export default function DataTable({ rows, columns }) {
         إضافة جديد
         <Link to="/users/new">إضافة جديد</Link>
       </div>
-      <DataGrid
-        rows={rows}
-        columns={columns.concat(actionColumn)}
-        pageSize={5}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-        className="dataGrid"
-      />
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <DataGrid
+          rows={rows}
+          columns={columns.concat(actionColumn)}
+          pageSize={5}
+          rowsPerPageOptions={[9]}
+          checkboxSelection
+          className="dataGrid"
+        />
+      )}
     </div>
   );
 }

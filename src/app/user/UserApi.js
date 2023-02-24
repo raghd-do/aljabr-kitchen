@@ -42,7 +42,6 @@ export const UserApi = createApi({
           const query = await getDocs(collection(db, "Users"));
           let users = [];
           query.forEach((doc) => {
-            console.log(doc.data);
             users.push({ id: doc.id, ...doc.data() });
           });
           return { data: users };
