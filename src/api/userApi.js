@@ -1,14 +1,15 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { db } from "../../config/firebase.config";
+import { db } from "../config/firebase.config";
 import {
   setDoc,
   doc,
   serverTimestamp,
   getDocs,
   collection,
+  deleteDoc,
 } from "firebase/firestore";
 
-export const UserApi = createApi({
+export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fakeBaseQuery(),
 
@@ -35,6 +36,7 @@ export const UserApi = createApi({
         return { data: "ok" };
       },
     }),
+
     // READ - ALL
     getUsers: build.query({
       async queryFn() {
@@ -51,7 +53,22 @@ export const UserApi = createApi({
         }
       },
     }),
+
+    // DELETE
+    deleteUser: build.mutation({
+      // TODO: delete auth account & user image file
+      async queryFn(id) {
+        try {
+          await deleteDoc(doc(db, "Users", id));
+          return { data: "user deleted" };
+        } catch (error) {
+          console.log(error);
+          return { error };
+        }
+      },
+    }),
   }),
 });
 
-export const { useAddUserMutation, useGetUsersQuery } = UserApi;
+export const { useAddUserMutation, useGetUsersQuery, useDeleteUserMutation } =
+  userApi;

@@ -2,23 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    data: [],
-  },
-  reducers: {
-    setUsers: (state, action) => {
-      console.log(action.payload);
-      state.data = action.payload;
-    },
-  },
+  initialState: {},
+  reducers: {},
 });
 
-export const { setUsers } = userSlice.actions;
+export const { userAdded, fetchUsers, userDeleted } = userSlice.actions;
 export default userSlice.reducer;
 
 // LIST
 export const userColumns = [
-  // { field: "id", headerName: "ID", width: 70 },
   {
     field: "name",
     headerName: "العضوة",

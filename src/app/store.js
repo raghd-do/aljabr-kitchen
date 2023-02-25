@@ -5,7 +5,7 @@ import productReducer from "./productSlice";
 import billReducer from "./billSlice";
 import themeReducer from "./themeSlice";
 // API
-import { UserApi } from "./user/UserApi";
+import { userApi } from "../api/userApi";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 export const store = configureStore({
@@ -16,10 +16,10 @@ export const store = configureStore({
     bill: billReducer,
     theme: themeReducer,
 
-    [UserApi.reducerPath]: UserApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(UserApi.middleware),
+    getDefaultMiddleware().concat(userApi.middleware),
 });
 
 setupListeners(store.dispatch);

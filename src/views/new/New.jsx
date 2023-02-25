@@ -14,7 +14,7 @@ import { auth, storage } from "../../config/firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // API
-import { useAddUserMutation } from "../../app/user/UserApi";
+import { useAddUserMutation } from "../../api/userApi";
 
 export default function New({ title, inputs }) {
   // HOCKS

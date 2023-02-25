@@ -15,7 +15,7 @@ import { productInputs } from "./app/productSlice";
 import { productColumns } from "./app/productSlice";
 
 // API
-import { useGetUsersQuery } from "./app/user/UserApi";
+import { useGetUsersQuery } from "./api/userApi";
 
 // Views
 import Home from "./views/home/Home";
