@@ -6,7 +6,7 @@ const userSlice = createSlice({
   reducers: {},
 });
 
-export const { userAdded, fetchUsers, userDeleted } = userSlice.actions;
+export const {} = userSlice.actions;
 export default userSlice.reducer;
 
 // LIST
