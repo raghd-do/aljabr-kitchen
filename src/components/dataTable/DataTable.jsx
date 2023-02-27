@@ -11,7 +11,7 @@ import { useDeleteUserMutation } from "../../api/userApi";
 export default function DataTable({ rows, columns, isLoading }) {
   // HOCKS
   const location = useLocation();
-  const { deleteUser } = useDeleteUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
 
   const handleDelete = (id) => {
     switch (location.pathname) {
