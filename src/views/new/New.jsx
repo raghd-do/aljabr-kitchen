@@ -34,48 +34,72 @@ export default function New({ title, inputs }) {
     });
   };
 
-  useEffect(() => {
-    const uploadFile = () => {
-      // TO MAKE A UNICE NAME
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+  useEffect(
+    (location) => {
+      const uploadFile = () => {
+        let name = "";
+        // to save the image in a correct folder
+        switch (location.pathname) {
+          // USER
+          case "/users/new":
+            // TO MAKE A UNICE NAME
+            name = "users/" + new Date().getTime() + file.name;
+            break;
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          setUpload(progress);
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          setUpload(null);
-          setError(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((DownloadURL) => {
-            setItem((prev) => ({
-              ...prev,
-              image: DownloadURL,
-            }));
-            setUpload(null);
-          });
+          // BILL
+          case "/bills/new":
+            name = "bills/" + new Date().getTime() + file.name;
+            break;
+
+          // PRODUCT
+          case "/products/new":
+            name = "products/" + new Date().getTime() + file.name;
+            break;
+
+          default:
+            break;
         }
-      );
-    };
-    file && uploadFile();
-  }, [file]);
+
+        const storageRef = ref(storage, name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
+            setUpload(progress);
+            switch (snapshot.state) {
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
+              default:
+                break;
+            }
+          },
+          (error) => {
+            setUpload(null);
+            setError(error);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((DownloadURL) => {
+              setItem((prev) => ({
+                ...prev,
+                image: DownloadURL,
+              }));
+              setUpload(null);
+            });
+          }
+        );
+      };
+      file && uploadFile();
+    },
+    [file]
+  );
 
   // SUBMIT
   const submit = (e) => {
