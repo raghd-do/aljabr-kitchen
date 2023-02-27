@@ -1,26 +1,26 @@
 import React from "react";
 import "./dataTable.scss";
 // ROUTE
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 // MUI
 import { DataGrid } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
 // API
 import { useDeleteUserMutation } from "../../api/userApi";
 
-export default function DataTable({ rows, columns, isLoading }) {
+export default function DataTable({ type, rows, columns, isLoading }) {
   // HOCKS
-  const location = useLocation();
   const [deleteUser] = useDeleteUserMutation();
 
   const handleDelete = (id) => {
-    switch (location.pathname) {
-      case "/users":
-        deleteUser(id);
+    switch (type) {
+      case "users":
+        deleteUser(1);
+        console.log("deleting user is admin bussines :)");
         break;
-      case "/bills":
+      case "bills":
         break;
-      case "/products":
+      case "products":
         break;
       default:
         break;
@@ -34,7 +34,7 @@ export default function DataTable({ rows, columns, isLoading }) {
       width: 200,
       renderCell: (params) => (
         <div className="cellAction">
-          <Link to="/users/123">
+          <Link to={`/${type}/${params.row.id}`}>
             <div className="view">عرض</div>
           </Link>
           <div className="delete" onClick={() => handleDelete(params.row.id)}>
@@ -49,7 +49,7 @@ export default function DataTable({ rows, columns, isLoading }) {
     <div className="dataTable">
       <div className="title">
         إضافة جديد
-        <Link to="/users/new">إضافة جديد</Link>
+        <Link to={`/${type}/new`}>إضافة جديد</Link>
       </div>
       {isLoading ? (
         <CircularProgress />

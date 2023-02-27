@@ -63,6 +63,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <List
+                      type={"users"}
                       rows={users}
                       columns={userColumns}
                       isLoading={isLoading}
@@ -95,6 +96,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <List
+                      type={"bills"}
                       rows={bills}
                       columns={billColumns}
                       isLoading={isLoading}
@@ -127,6 +129,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <List
+                      type={"products"}
                       rows={products}
                       columns={productColumns}
                       isLoading={isLoading}
