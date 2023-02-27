@@ -1,13 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { auth } from "../config/firebase.config";
+import { onAuthStateChanged } from "firebase/auth";
 import { Navigate, useLocation } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
-  const user = useSelector((state) => state.auth);
   let location = useLocation();
 
-  if (!user.in) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
+  // checking auth from firebase
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      return <Navigate to="/login" state={{ from: location }} replace />;
+    }
+  });
   return children;
 }
