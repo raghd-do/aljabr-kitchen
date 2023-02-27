@@ -1,4 +1,5 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+// DB
 import { db } from "../config/firebase.config";
 import {
   setDoc,
@@ -12,10 +13,14 @@ import {
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fakeBaseQuery(),
+  refetchOnFocus: true,
+
+  tagTypes: ["users"],
 
   endpoints: (build) => ({
     // CREAT
     addUser: build.mutation({
+      invalidatesTags: ["users"],
       queryFn({ id, user }) {
         setDoc(doc(db, "Users", id), {
           image: user.image,
@@ -39,6 +44,7 @@ export const userApi = createApi({
 
     // READ - ALL
     getUsers: build.query({
+      providesTags: ["users"],
       async queryFn() {
         try {
           const query = await getDocs(collection(db, "Users"));
@@ -56,13 +62,15 @@ export const userApi = createApi({
 
     // DELETE
     deleteUser: build.mutation({
-      // TODO: delete auth account & user image file
+      // TODO: delete auth account (solved by admin auth but alternativly use firebase console)
+      // TODO: delete [user image file] => there is extention for this
+      invalidatesTags: ["users"],
       async queryFn(id) {
         try {
-          await deleteDoc(doc(db, "Users", id));
+          deleteDoc(doc(db, "Users", id));
           return { data: "user deleted" };
         } catch (error) {
-          console.log(error);
+          console.log("can't delete user");
           return { error };
         }
       },
