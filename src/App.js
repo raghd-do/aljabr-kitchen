@@ -72,10 +72,10 @@ function App() {
                 }
               />
               <Route
-                path=":userId"
+                path=":id"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <Single type={"users"} />
                   </ProtectedRoute>
                 }
               />
@@ -105,10 +105,10 @@ function App() {
                 }
               />
               <Route
-                path=":billId"
+                path=":id"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <Single type={"bills"} />
                   </ProtectedRoute>
                 }
               />
@@ -138,10 +138,10 @@ function App() {
                 }
               />
               <Route
-                path=":productID"
+                path=":id"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <Single type={"products"} />
                   </ProtectedRoute>
                 }
               />

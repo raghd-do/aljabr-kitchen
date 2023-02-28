@@ -6,6 +6,7 @@ import {
   doc,
   serverTimestamp,
   getDocs,
+  getDoc,
   collection,
   deleteDoc,
 } from "firebase/firestore";
@@ -60,6 +61,19 @@ export const userApi = createApi({
       },
     }),
 
+    // READ - ONE
+    getUser: build.query({
+      async queryFn(id) {
+        try {
+          const user = await getDoc(doc(db, "Users", id));
+          return { data: user };
+        } catch (error) {
+          console.log(error);
+          return { error };
+        }
+      },
+    }),
+
     // DELETE
     deleteUser: build.mutation({
       // TODO: delete auth account (solved by admin auth but alternativly use firebase console)
@@ -78,5 +92,9 @@ export const userApi = createApi({
   }),
 });
 
-export const { useAddUserMutation, useGetUsersQuery, useDeleteUserMutation } =
-  userApi;
+export const {
+  useAddUserMutation, // C
+  useGetUsersQuery, // R - a
+  useGetUserQuery, // R - o
+  useDeleteUserMutation, // D
+} = userApi;

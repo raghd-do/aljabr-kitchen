@@ -7,6 +7,7 @@ import Navbar from "../../components/navbar/Navbar";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Alert from "@mui/material/Alert";
 import LinearProgress from "@mui/material/LinearProgress";
+// TODO: Snakbar to show the alert maseges on
 // ROUTE
 import { useLocation, useNavigate } from "react-router-dom";
 // FIREBASE
