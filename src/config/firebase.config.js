@@ -1,11 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+// AUTH
 import { getAuth } from "firebase/auth";
+// DB
+import { getFirestore } from "firebase/firestore";
+// STORAGE
+import { getStorage } from "firebase/storage";
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC1x_ISi3Ocm8EA3erua-3bOSNZ0S99IwQ",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "budget-5f387.firebaseapp.com",
   projectId: "budget-5f387",
   storageBucket: "budget-5f387.appspot.com",
@@ -18,7 +23,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Serveses
-export const db = getFirestore();
-export const auth = getAuth();
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 export const analytics = getAnalytics(app);
