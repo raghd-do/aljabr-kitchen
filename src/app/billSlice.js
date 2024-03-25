@@ -48,7 +48,7 @@ export const billColumns = [
     width: 150,
     renderCell: (params) => <div>{params.row.amount} ريال</div>,
   },
-  { field: "bayFrom", headerName: "جهة الشراء", width: 150 },
+  { field: "boughtFrom", headerName: "جهة الشراء", width: 150 },
 ];
 
 // NEW
@@ -64,7 +64,7 @@ export const billInputs = [
     type: "text",
   },
   {
-    id: "bayFrom",
+    id: "boughtFrom",
     label: "جهة الشراء",
     type: "text",
   },

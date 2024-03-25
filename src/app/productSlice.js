@@ -5,7 +5,7 @@ const productSlice = createSlice({
   initialState: [
     {
       id: 1,
-      name: "فوط صحية",
+      name: "استشوار",
       desc: "lorem ipsom",
       prise: 200,
       category: "العناية الصحية",
